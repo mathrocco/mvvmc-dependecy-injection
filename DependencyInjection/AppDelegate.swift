@@ -11,36 +11,147 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow?
+    lazy var window: UIWindow? = UIWindow()
 
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        window?.makeKeyAndVisible()
+        let container = DependencyContainer()
+        let splashCoordinator = container.makeSplashCoordinator()
+        splashCoordinator.start(window: window!)
         return true
     }
-
-    func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
-    }
-
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    }
-
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-    }
-
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    }
-
-    func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
-
-
 }
 
+
+protocol SplashFactory {
+    func makeSplashViewController(coordinator: SplashCoordinator) -> SplashViewController
+    func makeSplashCoordinator() -> SplashCoordinator
+}
+
+protocol HomeFactory {
+    func makeHomeViewController(coordinator: HomeCoordinator) -> UIViewController
+    func makeHomeCoordinator() -> HomeCoordinator
+}
+
+class DependencyContainer {}
+
+extension DependencyContainer: SplashFactory {
+    func makeSplashViewController(coordinator: SplashCoordinator) -> SplashViewController {
+        let viewController = SplashViewController(factory: self, coordinator)
+        return viewController
+    }
+
+    func makeSplashCoordinator() -> SplashCoordinator {
+        let coordinator = SplashCoordinator(factory: self)
+        return coordinator
+    }
+}
+
+extension DependencyContainer: HomeFactory {
+    func makeHomeViewController(coordinator: HomeCoordinator) -> UIViewController {
+        let homeViewController = HomeViewController(factory: self, coordinator)
+        return homeViewController
+    }
+
+    func makeHomeCoordinator() -> HomeCoordinator {
+        let coordinator = HomeCoordinator(factory: self)
+        return coordinator
+    }
+}
+
+class SplashCoordinator {
+    private let factory: SplashFactory & HomeFactory
+
+    init(factory: SplashFactory & HomeFactory) {
+        self.factory = factory
+    }
+
+    func start(window: UIWindow) {
+        window.rootViewController = UINavigationController(
+            rootViewController: factory.makeSplashViewController(coordinator: self)
+        )
+    }
+}
+
+extension SplashCoordinator: SplashCoordinatingActions {
+    func nextVC(viewController: UIViewController) {
+        guard let navigationController = viewController.navigationController else {
+            fatalError("Current view controller doens't bellong to a navigation stack")
+        }
+        let homeCoordinator = factory.makeHomeCoordinator()
+        homeCoordinator.start(navigationController)
+    }
+}
+
+protocol SplashCoordinatingActions {
+    func nextVC(viewController: UIViewController)
+}
+
+class SplashViewController: UIViewController {
+    private let factory: SplashFactory
+    private let coordinator: SplashCoordinatingActions
+
+    init(factory: SplashFactory, _ coordinator: SplashCoordinator) {
+        self.factory = factory
+        self.coordinator = coordinator
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        self.view.backgroundColor = .red
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        addButton()
+    }
+
+    func addButton() {
+        let buttonFrame = CGRect(origin: view.center, size: .init(width: 100, height: 50))
+        let button = UIButton(frame: buttonFrame)
+        button.setTitle("Next", for: .normal)
+        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        view.addSubview(button)
+    }
+
+    @objc func buttonAction(sender: Any) {
+        coordinator.nextVC(viewController: self)
+    }
+}
+
+class HomeViewController: UIViewController {
+    private let factory: HomeFactory
+    private let coordinator: HomeCoordinator
+
+    init(factory: HomeFactory, _ coordinator: HomeCoordinator) {
+        self.factory = factory
+        self.coordinator = coordinator
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        self.view.backgroundColor = .blue
+    }
+}
+
+class HomeCoordinator {
+    private let factory: HomeFactory
+
+    init(factory: HomeFactory) {
+        self.factory = factory
+    }
+
+    func start(_ navigationController: UINavigationController) {
+        let homeViewController = factory.makeHomeViewController(coordinator: self)
+        navigationController.pushViewController(homeViewController, animated: true)
+    }
+}
