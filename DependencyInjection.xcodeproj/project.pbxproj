@@ -8,10 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		50702206211C9575005F9DA8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50702205211C9575005F9DA8 /* AppDelegate.swift */; };
-		50702208211C9575005F9DA8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50702207211C9575005F9DA8 /* ViewController.swift */; };
 		5070220D211C9575005F9DA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5070220C211C9575005F9DA8 /* Assets.xcassets */; };
 		5070221B211C9576005F9DA8 /* DependencyInjectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5070221A211C9576005F9DA8 /* DependencyInjectionTests.swift */; };
 		50702226211C9576005F9DA8 /* DependencyInjectionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50702225211C9576005F9DA8 /* DependencyInjectionUITests.swift */; };
+		507022352120E8BD005F9DA8 /* SplashFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507022342120E8BD005F9DA8 /* SplashFactory.swift */; };
+		507022372120E8C6005F9DA8 /* SplashCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507022362120E8C6005F9DA8 /* SplashCoordinator.swift */; };
+		507022392120E8CE005F9DA8 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507022382120E8CE005F9DA8 /* SplashViewController.swift */; };
+		5070223C2120E979005F9DA8 /* HomeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5070223B2120E979005F9DA8 /* HomeFactory.swift */; };
+		5070223E2120E980005F9DA8 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5070223D2120E980005F9DA8 /* HomeCoordinator.swift */; };
+		507022402120E988005F9DA8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5070223F2120E988005F9DA8 /* HomeViewController.swift */; };
+		507022422120E9E1005F9DA8 /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507022412120E9E1005F9DA8 /* DependencyContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,7 +40,6 @@
 /* Begin PBXFileReference section */
 		50702202211C9575005F9DA8 /* DependencyInjection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DependencyInjection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50702205211C9575005F9DA8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		50702207211C9575005F9DA8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5070220C211C9575005F9DA8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50702211211C9575005F9DA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50702216211C9576005F9DA8 /* DependencyInjectionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DependencyInjectionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -43,6 +48,13 @@
 		50702221211C9576005F9DA8 /* DependencyInjectionUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DependencyInjectionUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		50702225211C9576005F9DA8 /* DependencyInjectionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyInjectionUITests.swift; sourceTree = "<group>"; };
 		50702227211C9576005F9DA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		507022342120E8BD005F9DA8 /* SplashFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashFactory.swift; sourceTree = "<group>"; };
+		507022362120E8C6005F9DA8 /* SplashCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashCoordinator.swift; sourceTree = "<group>"; };
+		507022382120E8CE005F9DA8 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		5070223B2120E979005F9DA8 /* HomeFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFactory.swift; sourceTree = "<group>"; };
+		5070223D2120E980005F9DA8 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		5070223F2120E988005F9DA8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		507022412120E9E1005F9DA8 /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,7 +106,9 @@
 			isa = PBXGroup;
 			children = (
 				50702205211C9575005F9DA8 /* AppDelegate.swift */,
-				50702207211C9575005F9DA8 /* ViewController.swift */,
+				507022412120E9E1005F9DA8 /* DependencyContainer.swift */,
+				507022332120E89B005F9DA8 /* Splash */,
+				5070223A2120E955005F9DA8 /* Home */,
 				5070220C211C9575005F9DA8 /* Assets.xcassets */,
 				50702211211C9575005F9DA8 /* Info.plist */,
 			);
@@ -117,6 +131,26 @@
 				50702227211C9576005F9DA8 /* Info.plist */,
 			);
 			path = DependencyInjectionUITests;
+			sourceTree = "<group>";
+		};
+		507022332120E89B005F9DA8 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				507022342120E8BD005F9DA8 /* SplashFactory.swift */,
+				507022362120E8C6005F9DA8 /* SplashCoordinator.swift */,
+				507022382120E8CE005F9DA8 /* SplashViewController.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		5070223A2120E955005F9DA8 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				5070223B2120E979005F9DA8 /* HomeFactory.swift */,
+				5070223D2120E980005F9DA8 /* HomeCoordinator.swift */,
+				5070223F2120E988005F9DA8 /* HomeViewController.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,8 +282,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50702208211C9575005F9DA8 /* ViewController.swift in Sources */,
+				507022372120E8C6005F9DA8 /* SplashCoordinator.swift in Sources */,
+				5070223C2120E979005F9DA8 /* HomeFactory.swift in Sources */,
 				50702206211C9575005F9DA8 /* AppDelegate.swift in Sources */,
+				507022352120E8BD005F9DA8 /* SplashFactory.swift in Sources */,
+				507022392120E8CE005F9DA8 /* SplashViewController.swift in Sources */,
+				507022402120E988005F9DA8 /* HomeViewController.swift in Sources */,
+				507022422120E9E1005F9DA8 /* DependencyContainer.swift in Sources */,
+				5070223E2120E980005F9DA8 /* HomeCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
