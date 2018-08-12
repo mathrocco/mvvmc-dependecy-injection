@@ -15,17 +15,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        let navigationController = UINavigationController()
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
         let container = DependencyContainer()
         let splashCoordinator = container.makeSplashCoordinator()
-        splashCoordinator.start(window: window!)
+        splashCoordinator.start(navigationController)
         return true
     }
 }
 
 
 protocol SplashFactory {
-    func makeSplashViewController(coordinator: SplashCoordinator) -> SplashViewController
+    func makeSplashViewController(coordinator: SplashCoordinatingActions) -> SplashViewController
     func makeSplashCoordinator() -> SplashCoordinator
 }
 
@@ -37,7 +39,7 @@ protocol HomeFactory {
 class DependencyContainer {}
 
 extension DependencyContainer: SplashFactory {
-    func makeSplashViewController(coordinator: SplashCoordinator) -> SplashViewController {
+    func makeSplashViewController(coordinator: SplashCoordinatingActions) -> SplashViewController {
         let viewController = SplashViewController(factory: self, coordinator)
         return viewController
     }
@@ -67,10 +69,9 @@ class SplashCoordinator {
         self.factory = factory
     }
 
-    func start(window: UIWindow) {
-        window.rootViewController = UINavigationController(
-            rootViewController: factory.makeSplashViewController(coordinator: self)
-        )
+    func start(_ navigationController: UINavigationController) {
+        let splashViewController = factory.makeSplashViewController(coordinator: self)
+        navigationController.viewControllers = [splashViewController]
     }
 }
 
@@ -92,7 +93,7 @@ class SplashViewController: UIViewController {
     private let factory: SplashFactory
     private let coordinator: SplashCoordinatingActions
 
-    init(factory: SplashFactory, _ coordinator: SplashCoordinator) {
+    init(factory: SplashFactory, _ coordinator: SplashCoordinatingActions) {
         self.factory = factory
         self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
