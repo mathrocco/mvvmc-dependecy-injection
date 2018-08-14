@@ -143,8 +143,8 @@
 				507022342120E8BD005F9DA8 /* SplashFactory.swift */,
 				507022362120E8C6005F9DA8 /* SplashCoordinator.swift */,
 				507022382120E8CE005F9DA8 /* SplashViewController.swift */,
-				5070224521238699005F9DA8 /* View */,
-				50702246212386A0005F9DA8 /* ViewModel */,
+				50702247212386DD005F9DA8 /* SplashView.swift */,
+				5070224921238758005F9DA8 /* SplashViewModel.swift */,
 			);
 			path = Splash;
 			sourceTree = "<group>";
@@ -157,22 +157,6 @@
 				5070223F2120E988005F9DA8 /* HomeViewController.swift */,
 			);
 			path = Home;
-			sourceTree = "<group>";
-		};
-		5070224521238699005F9DA8 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				50702247212386DD005F9DA8 /* SplashView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		50702246212386A0005F9DA8 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				5070224921238758005F9DA8 /* SplashViewModel.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
