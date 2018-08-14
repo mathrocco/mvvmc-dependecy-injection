@@ -11,4 +11,6 @@ import UIKit
 protocol SplashFactory {
     func makeSplashViewController(coordinator: SplashCoordinatingActions) -> SplashViewController
     func makeSplashCoordinator() -> SplashCoordinator
+    func makeSplashView(viewModel: SplashViewModel) -> SplashView
+    func makeSplashViewModel(coordinator: SplashCoordinatingActions) -> SplashViewModel
 }

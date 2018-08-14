@@ -11,6 +11,16 @@ import UIKit
 class DependencyContainer {}
 
 extension DependencyContainer: SplashFactory {
+    func makeSplashView(viewModel: SplashViewModel) -> SplashView {
+        let view = SplashView(viewModel: viewModel)
+        return view
+    }
+
+    func makeSplashViewModel(coordinator: SplashCoordinatingActions) -> SplashViewModel {
+        let viewModel = SplashViewModel(coordinator: coordinator)
+        return viewModel
+    }
+
     func makeSplashViewController(coordinator: SplashCoordinatingActions) -> SplashViewController {
         let viewController = SplashViewController(factory: self, coordinator)
         return viewController

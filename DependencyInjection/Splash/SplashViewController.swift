@@ -22,24 +22,9 @@ class SplashViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        self.view.backgroundColor = .red
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        addButton()
-    }
-
-    func addButton() {
-        let buttonFrame = CGRect(origin: view.center, size: .init(width: 100, height: 50))
-        let button = UIButton(frame: buttonFrame)
-        button.setTitle("Next", for: .normal)
-        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-        view.addSubview(button)
-    }
-
-    @objc func buttonAction(sender: Any) {
-        coordinator.nextVC(viewController: self)
+    override func loadView() {
+        let splashViewModel = factory.makeSplashViewModel(coordinator: coordinator)
+        let splashView = factory.makeSplashView(viewModel: splashViewModel)
+        view = splashView
     }
 }
