@@ -17,6 +17,6 @@ class HomeCoordinator {
 
     func start(_ navigationController: UINavigationController) {
         let homeViewController = factory.makeHomeViewController(coordinator: self)
-        navigationController.pushViewController(homeViewController, animated: true)
+        navigationController.viewControllers = [homeViewController]
     }
 }

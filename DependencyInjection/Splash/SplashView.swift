@@ -27,19 +27,15 @@ class SplashView: UIView, SplashViewModelViewDelegate {
 
     func loadView() {
         backgroundColor = .red
-        addButton()
+        addLabel()
     }
 
-    func addButton() {
-        let origin = CGPoint.init(x: 200, y: 200)
-        let buttonFrame = CGRect(origin: origin, size: .init(width: 100, height: 50))
-        let button = UIButton(frame: buttonFrame)
-        button.setTitle("Next", for: .normal)
-        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-        addSubview(button)
-    }
-
-    @objc func buttonAction(sender: Any) {
-        viewModel.goHome()
+    func addLabel() {
+        let origin = CGPoint.init(x: 100, y: 200)
+        let labelFrame = CGRect(origin: origin, size: .init(width: 250, height: 50))
+        let label = UILabel(frame: labelFrame)
+        label.textColor = .white
+        label.text = "I am your fake splash screen"
+        addSubview(label)
     }
 }

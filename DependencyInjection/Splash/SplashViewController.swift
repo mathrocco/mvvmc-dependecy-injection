@@ -12,6 +12,10 @@ class SplashViewController: UIViewController {
     private let factory: SplashFactory
     private let coordinator: SplashCoordinatingActions
 
+    lazy var viewModel: SplashViewModel = {
+        return factory.makeSplashViewModel(coordinator: coordinator)
+    }()
+
     init(factory: SplashFactory, _ coordinator: SplashCoordinatingActions) {
         self.factory = factory
         self.coordinator = coordinator
@@ -23,8 +27,12 @@ class SplashViewController: UIViewController {
     }
 
     override func loadView() {
-        let splashViewModel = factory.makeSplashViewModel(coordinator: coordinator)
-        let splashView = factory.makeSplashView(viewModel: splashViewModel)
+        let splashView = factory.makeSplashView(viewModel: viewModel)
         view = splashView
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        viewModel.performLogin()
     }
 }

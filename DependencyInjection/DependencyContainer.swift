@@ -8,7 +8,10 @@
 
 import UIKit
 
-class DependencyContainer {}
+class DependencyContainer {
+    lazy var networkManager: NetworkManager = NetworkManager()
+    lazy var loginRequester: LoginRequester = LoginRequester(networkManager: networkManager)
+}
 
 extension DependencyContainer: SplashFactory {
     func makeSplashView(viewModel: SplashViewModel) -> SplashView {
@@ -17,7 +20,7 @@ extension DependencyContainer: SplashFactory {
     }
 
     func makeSplashViewModel(coordinator: SplashCoordinatingActions) -> SplashViewModel {
-        let viewModel = SplashViewModel(coordinator: coordinator)
+        let viewModel = SplashViewModel(requester: loginRequester, coordinator: coordinator)
         return viewModel
     }
 

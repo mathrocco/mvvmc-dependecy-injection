@@ -13,22 +13,33 @@ protocol SplashCoordinatingActions: class {
 }
 
 class SplashViewModel {
-    weak var viewDelegate: SplashViewModelViewDelegate?
-    var coordinator: SplashCoordinatingActions
 
-    init(coordinator: SplashCoordinatingActions) {
+    weak var viewDelegate: SplashViewModelViewDelegate?
+    let coordinator: SplashCoordinatingActions
+    let requester: LoginRequester
+
+    init(requester: LoginRequester, coordinator: SplashCoordinatingActions) {
+        self.requester = requester
         self.coordinator = coordinator
     }
 
-    func performAutoLogin() {
-        // add delay and log considering user token
-    }
+    func performLogin() {
+        requester.performLogin { [weak self] (success, error) in
+            guard success == true else {
+                self?.goLogin()
+                return
+            }
 
-    func didLoginWithUser() {
-        // call coordinator goLogin or goHome
+            self?.goHome()
+        }
     }
 
     func goHome() {
         coordinator.nextVC()
+    }
+
+    func goLogin() {
+        // TODO: Implement Login screen
+        print("Go to login screen")
     }
 }

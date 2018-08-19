@@ -20,6 +20,8 @@
 		507022422120E9E1005F9DA8 /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507022412120E9E1005F9DA8 /* DependencyContainer.swift */; };
 		50702248212386DD005F9DA8 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50702247212386DD005F9DA8 /* SplashView.swift */; };
 		5070224A21238758005F9DA8 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5070224921238758005F9DA8 /* SplashViewModel.swift */; };
+		50D9371F212A179300853B9F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9371E212A179300853B9F /* NetworkManager.swift */; };
+		50D93722212A1D8C00853B9F /* LoginRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D93721212A1D8C00853B9F /* LoginRequester.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		507022412120E9E1005F9DA8 /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
 		50702247212386DD005F9DA8 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		5070224921238758005F9DA8 /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
+		50D9371E212A179300853B9F /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		50D93721212A1D8C00853B9F /* LoginRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequester.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +115,7 @@
 			children = (
 				50702205211C9575005F9DA8 /* AppDelegate.swift */,
 				507022412120E9E1005F9DA8 /* DependencyContainer.swift */,
+				50D93720212A1D7B00853B9F /* NetworkLayer */,
 				507022332120E89B005F9DA8 /* Splash */,
 				5070223A2120E955005F9DA8 /* Home */,
 				5070220C211C9575005F9DA8 /* Assets.xcassets */,
@@ -157,6 +162,15 @@
 				5070223F2120E988005F9DA8 /* HomeViewController.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		50D93720212A1D7B00853B9F /* NetworkLayer */ = {
+			isa = PBXGroup;
+			children = (
+				50D9371E212A179300853B9F /* NetworkManager.swift */,
+				50D93721212A1D8C00853B9F /* LoginRequester.swift */,
+			);
+			path = NetworkLayer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,9 +306,11 @@
 				5070223C2120E979005F9DA8 /* HomeFactory.swift in Sources */,
 				50702206211C9575005F9DA8 /* AppDelegate.swift in Sources */,
 				507022352120E8BD005F9DA8 /* SplashFactory.swift in Sources */,
+				50D9371F212A179300853B9F /* NetworkManager.swift in Sources */,
 				507022392120E8CE005F9DA8 /* SplashViewController.swift in Sources */,
 				5070224A21238758005F9DA8 /* SplashViewModel.swift in Sources */,
 				507022402120E988005F9DA8 /* HomeViewController.swift in Sources */,
+				50D93722212A1D8C00853B9F /* LoginRequester.swift in Sources */,
 				507022422120E9E1005F9DA8 /* DependencyContainer.swift in Sources */,
 				5070223E2120E980005F9DA8 /* HomeCoordinator.swift in Sources */,
 				50702248212386DD005F9DA8 /* SplashView.swift in Sources */,
